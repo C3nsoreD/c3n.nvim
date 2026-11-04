@@ -34,6 +34,13 @@ return {
         if vim.b[bufnr].disable_autoformat or vim.g.disable_autoformat then
           return
         end
+        -- Never auto-format these — they're managed by their own tooling and
+        -- an LSP/formatter rewrite can corrupt them (e.g. `go.mod`/`go.sum`
+        -- are maintained by the `go mod` commands).
+        local skip = { gomod = true, gosum = true, gowork = true }
+        if skip[vim.bo[bufnr].filetype] then
+          return
+        end
         return { timeout_ms = 2000, lsp_format = "fallback" }
       end,
       formatters = {
