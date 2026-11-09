@@ -1,0 +1,26 @@
+# EditorConfig — portable formatting rules that every editor and most
+# formatters (prettier, stylua, gofmt-aware tools) read automatically.
+# Docs: https://editorconfig.org  ·  copy this file into other projects too.
+root = true
+
+# Defaults for every file.
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Go uses real tabs by convention.
+[*.go]
+indent_style = tab
+indent_size = 4
+
+# Keep Markdown trailing whitespace: two trailing spaces mean "hard line break".
+[*.md]
+trim_trailing_whitespace = false
+
+# Makefiles require tabs.
+[Makefile]
+indent_style = tab
